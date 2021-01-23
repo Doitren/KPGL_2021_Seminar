@@ -14,6 +14,8 @@ namespace KPGL_
     public partial class Main_Form : Form
     {
         Fractal_Lines fractal;
+        
+
         public Main_Form()
         {
             InitializeComponent();
@@ -49,7 +51,7 @@ namespace KPGL_
 
         private void Paint_Of_Fractal_Paint(object sender, PaintEventArgs e)
         {
-
+            
         }
         
     }
