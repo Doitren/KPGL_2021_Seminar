@@ -47,7 +47,7 @@ namespace KPGL_
         //Check if graphics exists
         public void Export(bool Image, bool Csv)
         {
-            MessageBox.Show("Vyberte místo pro uložení")
+            MessageBox.Show("Vyberte místo pro uložení");
             String Path = conf.Get_Setting_Destinations().Return_Destinaton();
             if (Image)
             {
