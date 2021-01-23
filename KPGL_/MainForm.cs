@@ -13,46 +13,43 @@ namespace KPGL_
 {
     public partial class Main_Form : Form
     {
-        Fractal_Lines fractal;
-        
-
+        Config conf;
+        //Done
         public Main_Form()
         {
             InitializeComponent();
+
+            this.conf = new Config();
         }
 
         private void Reset_btn_Click(object sender, EventArgs e)
         {
-            Timer.Stop();
-            Settings_grpbox.Visible = true;
+            conf.Turn_Timer(false);
+            conf.iteration = conf.get_Def_Iteration();
+            conf.timer = conf.get_Def_Timer();
+            MainPanel.Controls.Clear();
         }
 
-        private void Start_btn_Click(object sender, EventArgs e)
+        private void visual_btn_Click(object sender, EventArgs e)
         {
-            Settings_grpbox.Visible = false;
+            MainPanel.Controls.Clear();
+            Visual vis = new Visual(conf);
+            vis.TopLevel = false;
+            vis.AutoScroll = true;
+            vis.FormBorderStyle = FormBorderStyle.None;
+            MainPanel.Controls.Add(vis);
+            vis.Show();
         }
 
-        private void Export_btn_Click(object sender, EventArgs e)
+        private void Settings_btn_Click(object sender, EventArgs e)
         {
-
+            MainPanel.Controls.Clear();
+            Settings exp = new Settings(conf);
+            exp.TopLevel = false;
+            exp.AutoScroll = true;
+            exp.FormBorderStyle = FormBorderStyle.None;
+            MainPanel.Controls.Add(exp);
+            exp.Show();
         }
-
-        public void Export(bool image, bool csv)
-        {
-            if (image)
-            {
-
-            }
-            if (csv)
-            {
-
-            }
-        }
-
-        private void Paint_Of_Fractal_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-        
     }
 }

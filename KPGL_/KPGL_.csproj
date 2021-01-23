@@ -46,12 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Export\Export_Types.cs" />
-    <Compile Include="Export\Export.cs">
+    <Compile Include="Export_folder\Export_choices.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Export\Export.Designer.cs">
-      <DependentUpon>Export.cs</DependentUpon>
+    <Compile Include="Export_folder\Export_choices.Designer.cs">
+      <DependentUpon>Export_choices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export_folder\Setting_Destinations.cs" />
+    <Compile Include="Visual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visual.Designer.cs">
+      <DependentUpon>Visual.cs</DependentUpon>
     </Compile>
     <Compile Include="Fractal\Fractal_Lines.cs" />
     <Compile Include="Fractal\Line.cs" />
@@ -70,9 +76,12 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ćonfig.cs" />
-    <EmbeddedResource Include="Export\Export.resx">
-      <DependentUpon>Export.cs</DependentUpon>
+    <Compile Include="Config.cs" />
+    <EmbeddedResource Include="Export_folder\Export_choices.resx">
+      <DependentUpon>Export_choices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visual.resx">
+      <DependentUpon>Visual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

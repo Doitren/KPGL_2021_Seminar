@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KPGL_
+namespace KPGL_.Export_folder
 {
-    public partial class Export : Form
+    public partial class Export_choices : Form
     {
-        Main_Form form;
-        public Export(Main_Form form)
+        Visual form;
+        //Done
+        public Export_choices(Visual form)
         {
             InitializeComponent();
 
@@ -25,7 +26,7 @@ namespace KPGL_
             bool Image = image_export_checkbox.Checked;
             bool Csv = csv_export_checkbox.Checked;
 
-            if(Image!=false || Csv!=false)
+            if (Image != false || Csv != false)
                 form.Export(Image, Csv);
         }
     }
