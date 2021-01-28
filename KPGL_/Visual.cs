@@ -17,7 +17,6 @@ namespace KPGL_
         Config conf;
 
         Fractal_Lines fractal;
-        int iteration;
 
         public Visual(Config conf)
         {
@@ -29,14 +28,7 @@ namespace KPGL_
         {
             this.conf = conf;
 
-            int timer_interval = conf.timer;
-            Timer.Interval = timer_interval;
-            Timer_interval_lbl.Text = Timer_interval_lbl.Text.Split(':')[0] + ": "+ timer_interval;
-            bool timer_status = conf.Get_Timer_Status();
-            Timer.Enabled = timer_status;
-            Timer_status_lbl.Text = Timer_status_lbl.Text.Split(':')[0] + ": " + timer_status;
-
-            iteration = conf.iteration;
+            Set_Timer(conf.Get_Timer_Status());
         }
 
         private void Export_btn_Click(object sender, EventArgs e)
@@ -51,7 +43,7 @@ namespace KPGL_
             String Path = conf.Get_Setting_Destinations().Return_Destinaton();
             if (Image)
             {
-                
+
             }
             if (Csv)
             {
@@ -62,35 +54,55 @@ namespace KPGL_
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            int interval = conf.timer;
-            Timer.Interval = interval;
+
             bool Status_Of_Timer = conf.Get_Timer_Status();
 
-            String Timer_def = Timer_status_lbl.Text.Split(':')[0]+": ";
-            Timer_interval_lbl.Text = Timer_interval_lbl.Text.Split(':')[0] + ": " + interval;
+            Set_Timer(Status_Of_Timer);
 
             if (Status_Of_Timer)
-            {
-                Timer_status_lbl.Text = Timer_def + Status_Of_Timer;
+                Paint_On_Panel();
+        }
+        private void Set_Timer(bool Timer_Status)
+        {
+            int interval = conf.timer;
+            Timer.Interval = interval;
+            Timer.Enabled = Timer_Status;
 
-                //Paint_On_Panel();
+            String Timer_def = Timer_status_lbl.Text.Split(':')[0] + ": ";
+            Timer_interval_lbl.Text = Timer_interval_lbl.Text.Split(':')[0] + ": " + interval;
+
+            if (Timer_Status)
+            {
+                Timer_status_lbl.Text = Timer_def + Timer_Status;
+                start_btn.Text = "Stop Timer";
             }
             else
             {
-                Timer_status_lbl.Text = Timer_def + Status_Of_Timer;
-                Timer.Enabled = Status_Of_Timer;
+                Timer_status_lbl.Text = Timer_def + Timer_Status;
+                Timer.Enabled = Timer_Status;
+                start_btn.Text = "Start Timer";
             }
         }
         //Set Graphic panel and then continue with iteration internaly, real magic happens here
         private void Paint_On_Panel()
         {
-            throw new NotImplementedException();
+            Iteration
         }
 
         private void start_btn_Click(object sender, EventArgs e)
         {
-            conf.Turn_Timer(true);
-            Timer.Enabled = true;
+            bool Timer_status = conf.Get_Timer_Status();
+            if (!Timer_status)
+            {
+                conf.Turn_Timer(true);
+                Timer.Enabled = true;
+            }
+            else
+            {
+                conf.Turn_Timer(false);
+                Timer.Enabled = false;
+            }
+            Set_Timer(!Timer_status);
         }
     }
 }

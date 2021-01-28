@@ -8,10 +8,14 @@ namespace KPGL_.Fractal
 {
     public class Fractal_Lines
     {
-        List<Line> Lines;
+        public List<Line> Lines;
         public Fractal_Lines()
         {
             this.Lines = new List<Line>();
+        }
+        public void NextIteration()
+        {
+
         }
     }
 }
