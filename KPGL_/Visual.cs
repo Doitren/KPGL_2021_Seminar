@@ -18,6 +18,8 @@ namespace KPGL_
 
         Fractal_Lines fractal;
 
+        Pen p;
+
         public Visual(Config conf)
         {
             InitializeComponent();
@@ -27,7 +29,8 @@ namespace KPGL_
         private void Default_Status(Config conf)
         {
             this.conf = conf;
-
+            fractal = new Fractal_Lines(Draw_panel.Width, Draw_panel.Height);
+            this.p = new Pen(Color.Black);
             Set_Timer(conf.Get_Timer_Status());
         }
 
@@ -86,7 +89,17 @@ namespace KPGL_
         //Set Graphic panel and then continue with iteration internaly, real magic happens here
         private void Paint_On_Panel()
         {
-            Iteration
+            Draw_panel.Refresh();
+            Graphics g = Draw_panel.CreateGraphics();
+            
+            List<Line> fractal_lines = fractal.GetLines();
+            foreach(Line s in fractal_lines)
+            {
+                int[] x_cor = s.Get_X();
+                int[] y_cor = s.Get_Y();
+
+                g.DrawLine(p, x_cor[0], y_cor[0], x_cor[1], y_cor[1]);
+            }
         }
 
         private void start_btn_Click(object sender, EventArgs e)
@@ -103,6 +116,12 @@ namespace KPGL_
                 Timer.Enabled = false;
             }
             Set_Timer(!Timer_status);
+        }
+
+        private void next_iteration_btn_Click(object sender, EventArgs e)
+        {
+            fractal.NextIteration();
+            Paint_On_Panel();
         }
     }
 }

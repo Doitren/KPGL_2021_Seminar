@@ -87,18 +87,18 @@ namespace KPGL_
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPanel.Location = new System.Drawing.Point(196, 0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1074, 640);
+            this.MainPanel.Size = new System.Drawing.Size(1213, 640);
             this.MainPanel.TabIndex = 3;
             // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1270, 640);
+            this.ClientSize = new System.Drawing.Size(1409, 640);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.SideBarPanel);
             this.Name = "Main_Form";
-            this.Text = "Main";
+            this.Text = "Hlavní okno";
             this.SideBarPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
